@@ -9,19 +9,19 @@
 //   colored image size Bitmap (based on the unit passed parametter)
 float coloredBitmap(int w, int h, char* unit) {
    // YOUR CODE HERE - BEGIN
- float result = w * h * 3 ; 
+ float result = w * h * 3 ; //bytes  
 
  if (strcmp(unit, "bt") == 0 ){
-return result ; 
+   return result * 8 ; //bits 
  } 
   if (strcmp(unit, "ko") == 0){
-   return result / 1024 ; 
+   return result / 1024 ; //kilobits 
  } 
   if (strcmp(unit, "mo") == 0){
-   return result / (1024*1024) ; 
+   return result / (1024*1024) ; //megabits
  }
  if (strcmp(unit, "go") == 0){
-   return result / (1024*1024*1024) ; 
+   return result / (1024*1024*1024) ; //gigabits 
  }
    // YOUR CODE HERE - END
    return 0;
