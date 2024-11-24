@@ -3,37 +3,35 @@
 // Parameters:
 //   w: width of the image
 //   h: height of the image
-//   durationMovie: duration in second of movie (colored image)
-//   durationCredits: duration in second of credit (image Black/White)
-//   unit: Unit of the output value. It could be 'bt' byte, 'ko' kilobits, 'mo' megabits, 'go' gigabits
-// Return value
-//   colored video size (based on the unit passed parametter)
+//   durationMovie: duration in seconds of the movie (colored image)
+//   durationCredits: duration in seconds of the credits (black-and-white image)
+//   unit: Unit of the output value. It could be 'bt' (bits), 'ko' (kilobits), 'mo' (megabits), 'go' (gigabits)
+// Return value:
+//   Total video size (based on the unit passed parameter)
 float video(int w, int h, int durationMovie, int durationCredits, int fps, char* unit) {
-   // YOUR CODE HERE - BEGIN
-   float colored ; 
-   float blackwhit ;
+   float colored; 
+   float blackwhit;
 
-if (strcmp(unit, "bt") == 0 ){
-  colored =3*w*h*8.0 ; 
-  blackwhit = w*h*8.0; 
- } 
-  else if (strcmp(unit, "ko") == 0){
-   //kilobits 
-  colored =(3*w*h)/ 1024 ; 
-  blackwhit = (w*h)/ 1024;
- } 
- else  if (strcmp(unit, "mo") == 0){
-    //megabits
-     colored =(3*w*h)/ (1024*1024) ; 
-  blackwhit = (w*h)/ (1024*1024);
-    
- }else{
-   //gigabits 
-    colored =(3*w*h)/ (1024*1024*1024) ; 
-  blackwhit = (w*h)/ (1024*1024*1024);
- }
+   // Determine the base size for colored and black-and-white frames based on the unit
+   if (strcmp(unit, "bt") == 0) {
+       // Bits
+       colored = 3 * w * h * 8.0; 
+       blackwhit = w * h * 8.0; 
+   } else if (strcmp(unit, "ko") == 0) {
+       // Kilobits
+       colored = (3 * w * h) / 1024.0; 
+       blackwhit = (w * h) / 1024.0;
+   } else if (strcmp(unit, "mo") == 0) {
+       // Megabits
+       colored = (3 * w * h) / (1024.0 * 1024.0); 
+       blackwhit = (w * h) / (1024.0 * 1024.0);
+   } else {
+       // Gigabits
+       colored = (3 * w * h) / (1024.0 * 1024.0 * 1024.0); 
+       blackwhit = (w * h) / (1024.0 * 1024.0 * 1024.0);
+   }
 
-float result = (colored * fps * durationMovie )+ (blackwhit * fps * durationMovie);
-   // YOUR CODE HERE - END
+  
+   float result = (colored * fps * durationMovie) + (blackwhit * fps * durationCredits);
    return result;
 }
